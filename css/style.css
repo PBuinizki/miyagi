@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @import url("https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
 
 /* 
@@ -602,7 +604,12 @@ h6 {
 
 .header {
   width: 100%;
-  height: 100px;
+  z-index: 999;
+  position: fixed;
+  top: 4px;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .header__container {
@@ -612,6 +619,62 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  min-height: 4.0625rem;
+}
+
+.header_hidden {
+  top: -50px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.header__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__logo-image {
+  width: 3.4375rem;
+  padding-bottom: 0.3125rem;
+}
+
+.header__logo-text {
+  margin-left: 0.625rem;
+}
+
+.header__logo-title {
+  font-family: "Myriad Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 90%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #DF6027;
+  -webkit-text-stroke: 1px #000;
+}
+
+.header__logo-description {
+  color: #000;
+  font-family: "Myriad Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 90%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 /*
@@ -671,7 +734,7 @@ h6 {
 
 .footer {
   min-height: 50vh;
-  padding: 4.0625rem 0 5.9375rem;
+  padding: 3.125rem 0 5.9375rem;
 }
 
 .footer__container {
@@ -692,17 +755,21 @@ h6 {
 }
 
 .footer__logo {
+  padding: 3.4375rem 0 0 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-ordinal-group: 11;
+      -ms-flex-order: 10;
+          order: 10;
 }
 
 .footer__row {
   width: 100%;
-  padding: 3.4375rem 0;
+  /*     padding: rem(55) 0; */
 }
 
 .footer__logo-image {
@@ -746,6 +813,10 @@ h6 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -786,26 +857,51 @@ h6 {
   letter-spacing: 0.05em;
 }
 
+._quality-control {
+  -webkit-box-ordinal-group: 11;
+      -ms-flex-order: 10;
+          order: 10;
+}
+
 .no-webp .action{
-  background-image: url("../images/actions/actions-bg.png"); }
+  background-image: url("../images/actions/actions-bg-1.png"); }
 
 .action {
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
   background-color: #1C1C1C;
-  min-height: 75vh;
+  min-height: 80vh;
   color: #fff;
   background-size: cover;
   background-position: bottom;
-  padding: 12.5rem 0 10rem;
+  padding: 12.5rem 0 12.5rem;
+  position: relative;
+}
+
+.no-webp .action::before{
+  background-image: url("../../images/actions/actions-bg-2.png"); }
+
+.action::before {
+  content: "";
+  width: 100%;
+  height: 150px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+  -webkit-filter: drop-shadow(16px 16px 25px black);
+          filter: drop-shadow(16px 16px 25px black);
 }
 
 .action__slider {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .action__list {
@@ -817,6 +913,7 @@ h6 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-left: -3.75rem;
   will-change: auto;
 }
 
@@ -950,6 +1047,143 @@ h6 {
   }
 }
 
+.category {
+  height: 100%;
+  padding: 6.875rem 0 0 0;
+}
+
+.category__title {
+  font-family: "Myriad Pro";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 4.5rem;
+  line-height: 110%;
+  /* or 79px */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #DF6027;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  position: relative;
+  padding-left: 1.5625rem;
+}
+
+.category__title ._with-love {
+  position: absolute;
+  left: 10%;
+  top: -4.25rem;
+  z-index: 10;
+}
+
+[data-aos=rotate-c] {
+  opacity: 0;
+  -webkit-transform: translateY(20%);
+      -ms-transform: translateY(20%);
+          transform: translateY(20%);
+  -webkit-clip-path: circle(25%);
+          clip-path: circle(25%);
+  -webkit-transition-property: opacity, -webkit-clip-path, -webkit-transform;
+  transition-property: opacity, -webkit-clip-path, -webkit-transform;
+  -o-transition-property: clip-path, opacity, transform;
+  transition-property: clip-path, opacity, transform;
+  transition-property: clip-path, opacity, transform, -webkit-clip-path, -webkit-transform;
+}
+
+[data-aos=rotate-c].aos-animate {
+  opacity: 1;
+  -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
+  -webkit-clip-path: circle(75%);
+          clip-path: circle(75%);
+}
+
+._bounce {
+  -webkit-animation-name: bounce;
+          animation-name: bounce;
+  /* имя кейфрейма для анимации */
+  -webkit-animation-duration: 3000ms;
+          animation-duration: 3000ms;
+  /* длительность анимации */
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  /* количество повторений, в данном случае - бесконечно */
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  /* проигрывать анимацию в прямом и в обратном порядке */
+  -webkit-animation-timing-function: ease-in;
+          animation-timing-function: ease-in;
+  /* вычисление временных промежутков для анимации, в данном случае анимация ускоряется */
+  -webkit-transform-origin: right center;
+      -ms-transform-origin: right center;
+          transform-origin: right center;
+}
+
+@-webkit-keyframes bounce {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  40% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  80% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  40% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+
+  80% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+
+  100% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+}
+
 @media (max-width: 510.98px) {
   .footer__container {
     -webkit-box-orient: vertical;
@@ -959,6 +1193,8 @@ h6 {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
 }
 
@@ -995,7 +1231,9 @@ h6 {
 
 .webp .footer{ background: -webkit-gradient(linear, left bottom, left top, from(rgba(223, 96, 39, 0.75)), to(rgba(223, 96, 39, 0.75))), url(../images/actions/actions-bg.webp); background: -o-linear-gradient(bottom, rgba(223, 96, 39, 0.75), rgba(223, 96, 39, 0.75)), url(../images/actions/actions-bg.webp); background: linear-gradient(0deg, rgba(223, 96, 39, 0.75), rgba(223, 96, 39, 0.75)), url(../images/actions/actions-bg.webp); }
 
-.webp .action{ background-image: url(../images/actions/actions-bg.webp); }
+.webp .action{ background-image: url(../images/actions/actions-bg-1.webp); }
+
+.webp .action::before{ background-image: url(../../images/actions/actions-bg-2.webp); }
 
 .webp .action__item{ background: url(../images/actions/action-item.webp), conic-gradient(from 195.34deg at 75.3% 38.57%, rgba(0, 0, 0, 0.05) 0deg, rgba(0, 0, 0, 0.05) 14.46deg, rgba(255, 255, 255, 0.05) 17.86deg, rgba(255, 255, 255, 0.05) 57.62deg, rgba(0, 0, 0, 0.05) 59.51deg, rgba(0, 0, 0, 0.05) 86.57deg, rgba(255, 255, 255, 0.05) 88.05deg, rgba(255, 255, 255, 0.05) 128.32deg, rgba(0, 0, 0, 0.05) 133.16deg, rgba(0, 0, 0, 0.05) 190.06deg, rgba(255, 255, 255, 0.05) 196.02deg, rgba(255, 255, 255, 0.05) 246.23deg, rgba(0, 0, 0, 0.05) 252.47deg, rgba(0, 0, 0, 0.05) 279.09deg, rgba(0, 0, 0, 0.05) 301.48deg, rgba(255, 255, 255, 0.05) 304.41deg, rgba(255, 255, 255, 0.05) 341.54deg, rgba(0, 0, 0, 0.05) 342.67deg, rgba(0, 0, 0, 0.05) 360deg), #DF6027; }
 
